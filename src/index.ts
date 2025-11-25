@@ -1,14 +1,8 @@
 import { serve } from '@hono/node-server';
-import { Hono } from 'hono';
+import { createApp } from './app.js';
+import { db } from './db/db.js';
 
-import { alumnosRoutes } from './alumnosRoutes.js';
-import { materiasRoutes } from './materiasRoutes.js';
-import { tareasRoutes } from './tareasRoutes.js';
-
-export const app = new Hono()
-  .route('/alumnos', alumnosRoutes)
-  .route('/materias', materiasRoutes)
-  .route('/tareas', tareasRoutes);
+export const app = createApp(db);
 
 serve(
   {
